@@ -1,11 +1,32 @@
 .profile {
+  width: 880px;
+  height: 120px;
+  top: 159px;
+  left: 200px;
+  opacity: 1;
 }
 
 .profile__avatar {
+  width: 120px;
+  height: 120px;
+  top: 159px;
+  left: 200px;
+  opacity: 1;
 }
 
 .profile__profile-info {
+  width: 415px;
+  height: 77px;
+  top: 181px;
+  left: 350px;
+  opacity: 1;
+  border-width: 1px;
 }
 
 .profile__add-button {
+  width: 150px;
+  height: 50px;
+  top: 194px;
+  left: 930px;
+  opacity: 1;
 }
