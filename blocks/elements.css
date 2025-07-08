@@ -1,14 +1,45 @@
 .elements {
+  width: 880px;
+  height: 743px;
+  top: 329px;
+  left: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 1;
 }
 
 .elements__group {
+  width: 21px;
+  height: 19px;
+  top: 1022px;
+  left: 443px;
+  opacity: 1;
+  border-width: 1.5px;
 }
 
 .elements__img {
+  width: 282px;
+  height: 282px;
+  top: 710px;
+  left: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 1;
 }
 
 .elements__text {
+  font-family: Inter;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 
 .elements__card {
+  width: 282px;
+  height: 361px;
+  top: 710px;
+  left: 200px;
+  opacity: 1;
+  border-radius: 10px;
 }
