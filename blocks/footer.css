@@ -1,15 +1,26 @@
 .footer {
+  display: flex;
   width: 318px;
   height: 18px;
-  top: 1139px;
-  left: 200px;
+  margin-top: 67px;
+  margin-bottom: 60px;
+  margin-left: 200px;
   opacity: 1;
 }
 
 .footer__text {
-  width: 318px;
-  height: 18px;
-  top: 1139px;
-  left: 200px;
-  opacity: 1;
+  color: #545454;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+@media screen and (max-width: 544px) {
+  .footer {
+    width: 282px;
+    height: 14px;
+    margin-left: 19px;
+    margin-bottom: 36px;
+    font-size: 14px;
+  }
 }
