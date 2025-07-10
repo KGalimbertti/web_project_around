@@ -23,13 +23,13 @@
   left: 200px;
 }
 
-.profile__description {
+.profile__info {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.profile__profile-info {
+.profile__text-name {
   top: 181px;
   left: 350px;
   border-width: 1px;

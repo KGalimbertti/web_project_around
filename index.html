@@ -11,7 +11,6 @@
       name="description"
       content="Projeto para adicionar interatividade ao site"
     />
-    <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
@@ -24,11 +23,17 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="" alt="" />
-        <div class="profile__description">
-          <h1 class="profile__profile-info">nome</h1>
+        <img
+          class="profile__avatar"
+          src="./images/Avatar.png"
+          alt="Um senhor de idade"
+        />
+        <div class="profile__info">
+          <span class="profile__text-name">Jacques Cousteau</span>
+          <span class="profile__text-description">Explorador</span>
           <button class="profile__edit-button"></button>
         </div>
+
         <button class="profile__add-button" type="submit">+</button>
       </section>
       <section class="elements">
@@ -123,10 +128,36 @@
           </div>
         </div>
       </section>
+      <div class="popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button"></button>
+          <form class="popup__form">
+            <h2 class="popup__tittle">Editar Perfil</h2>
+            <label class="popup__label" for=""></label>
+            <input
+              placeholder="Nome"
+              class="popup__input"
+              type="text"
+              name="name"
+              id="name"
+            />
+            <label class="popup__label" for=""></label>
+            <input
+              placeholder="Sobre mim"
+              class="popup__input"
+              type="text"
+              name="about"
+              id="about"
+            />
+            <button class="popup__submit-button" type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
     </main>
+
     <footer class="footer">
-      <p class="footer__text">&copy; 2024 Around The U.S.</p>
+      <p class="footer__text">&copy; 2025 Around The U.S.</p>
     </footer>
-    <script></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
