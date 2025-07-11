@@ -57,7 +57,7 @@
   overflow: hidden;
 }
 
-.element__image-heart {
+.element__like-button {
   width: 21px;
   height: 19px;
 }
@@ -78,5 +78,10 @@
     row-gap: 20px;
     padding-left: 19px;
     padding-right: 19px;
+  }
+
+  .element__paragraph {
+    font-size: 24px;
+    line-height: 100%;
   }
 }
