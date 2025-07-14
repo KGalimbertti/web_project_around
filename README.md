@@ -8,7 +8,7 @@ HTML5
 CSS Avançado (incluindo Grid e Gradients)
 JavaScript (para interatividade e funcionalidades dinâmicas)
 Figma (para o design e prototipagem)
-GitHub Pages ([para hospedagem do site] )
+GitHub Pages ([para hospedagem do site] https://kgalimbertti.github.io/web_project_around/)
 Responsividade (com media queries)
 
 Observações
