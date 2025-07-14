@@ -29,8 +29,8 @@
 }
 
 .popup__close-button {
-  width: 40px;
-  height: 40px;
+  width: 33px;
+  height: 33px;
   background-image: url("../images/close-button.png");
   background-color: transparent;
   position: absolute;
