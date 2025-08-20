@@ -22,6 +22,8 @@
       />
     </header>
     <main class="main">
+      <!--PERFIL-->
+
       <section class="profile">
         <div class="profile__info">
           <img
@@ -39,6 +41,9 @@
         </div>
         <button class="profile__add-button" type="submit"></button>
       </section>
+
+      <!--CARDS-->
+
       <section class="elements">
         <div class="element">
           <img
@@ -131,6 +136,9 @@
           </div>
         </div>
       </section>
+
+      <!--POPUP-->
+
       <div class="popup">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
@@ -156,7 +164,36 @@
           </form>
         </div>
       </div>
+      <div class="popup-new-local">
+        <div class="popup-new-local__container">
+          <button class="popup-new-local__close-button" type="button"></button>
+          <form class="popup-new-local__form">
+            <h2 class="popup-new-local__title">Novo local</h2>
+            <label class="popup-new-local__label" for="name"></label>
+            <input
+              placeholder="Titulo"
+              class="popup-new-local__input"
+              type="text"
+              name="name"
+              id="name"
+            />
+            <label class="popup-new-local__label" for="about"></label>
+            <input
+              placeholder="Link de imagem"
+              class="popup-new-local__input"
+              type="text"
+              name="about"
+              id="about"
+            />
+            <button class="popup-new-local__submit-button" type="submit">
+              Criar
+            </button>
+          </form>
+        </div>
+      </div>
     </main>
+
+    <!--FOOTER-->
 
     <footer class="footer">
       <p class="footer__text">&copy; 2025 Around The U.S.</p>
