@@ -4,6 +4,9 @@ const editButton = document.querySelector(".profile__edit-button");
 //Pegar o botão de fechar e armazenar no valor closeButton
 const closeButton = document.querySelector(".popup__close-button");
 
+//pegar o botão de add e armazenar no valor addButton
+const addButton = document.querySelector(".profile__add-button");
+
 //pegando elemento do popup para adicionar a função
 //de abertura do popup mudando a visibilidade do popup
 const popup = document.querySelector(".popup");
@@ -18,6 +21,9 @@ const profileDescription = document.querySelector(".profile__text-description");
 
 //chamar o formulário
 const formElement = document.querySelector(".popup__form");
+
+//chamar formulário do add local
+const formElementAddPopup = document.querySelector(".popup-new-local__form");
 
 //função para abrir o popup
 function openPopup() {
@@ -34,11 +40,15 @@ function closePopup() {
   popup.classList.remove("popup__opened");
 }
 
+function openPopupAddLocal() {}
+
 //Adicionando o evento de click para abrir o popup
 editButton.addEventListener("click", openPopup);
 
 //Adicionando o evento de click para fechar o popup
 closeButton.addEventListener("click", closePopup);
+
+//Adicionando o evento de click para apbrir o popup
 
 function handleProfileFormSubmit(evt) {
   //evita o comportamento de resetar e enviar os formulários
