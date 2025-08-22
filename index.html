@@ -44,102 +44,11 @@
 
       <!--CARDS-->
 
-      <section class="elements">
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/parque-nacional.png"
-            alt="Lago no parque nacional"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Parque Nacional</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/latemar.png"
-            alt="Montanhas em Latemar"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Latemar</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/lago-de-braies.png"
-            alt="Barcos no Lago de Braies"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Lago de Braies</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/montanhas-care.png"
-            alt="Por do sol nas montanhas"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Montanhas Carefour</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/lago-louise.png"
-            alt="Lago Louise no pé das montanhas"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Lago Louise</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="../images/vale-de-yosemite.png"
-            alt="Vale de Yosemite"
-          />
-          <div class="element__description">
-            <p class="element__paragraph">Vale de Yosemite</p>
-            <img
-              class="element__like-button"
-              src="./images/like-button.png"
-              alt="Coração"
-            />
-          </div>
-        </div>
-      </section>
+      <section class="elements"></section>
 
       <!--POPUP-->
 
-      <div class="popup">
+      <div class="popup-profile">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
           <form class="popup__form">
@@ -173,7 +82,7 @@
             <label class="popup-new-local__label" for="name"></label>
             <input
               placeholder="Titulo"
-              class="popup-new-local__input"
+              class="popup-new-local__input popup-new-local__input-name"
               type="text"
               name="name"
               id="name"
@@ -181,7 +90,7 @@
             <label class="popup-new-local__label" for="about"></label>
             <input
               placeholder="Link de imagem"
-              class="popup-new-local__input"
+              class="popup-new-local__input popup-new-local__input-image"
               type="text"
               name="about"
               id="about"
@@ -199,6 +108,24 @@
     <footer class="footer">
       <p class="footer__text">&copy; 2025 Around The U.S.</p>
     </footer>
+    <template id="card-template">
+      <div class="element">
+        <img
+          class="element__delete-button"
+          src="./images/delete-button.png"
+          alt="Lixeira"
+        />
+        <img class="element__image" src="#" alt="" />
+        <div class="element__description">
+          <p class="element__paragraph"></p>
+          <img
+            class="element__like-button"
+            src="./images/like-button.png"
+            alt="Coração"
+          />
+        </div>
+      </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

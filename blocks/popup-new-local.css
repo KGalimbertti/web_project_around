@@ -10,7 +10,7 @@
   display: none;
 }
 
-.popup-new-local__opened {
+.popup__opened {
   display: flex;
 }
 
