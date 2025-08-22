@@ -22,6 +22,12 @@
   position: relative;
 }
 
+.element__delete-teste {
+  position: absolute;
+  background: transparent;
+  border: none;
+}
+
 .element__image {
   width: 100%;
   height: 282px;
@@ -62,6 +68,10 @@
 .element__like-button {
   width: 21px;
   height: 19px;
+}
+
+.element__like-button-active {
+  background: transparent url("../images/like-button-active.png") no-repeat;
 }
 
 .element__delete-button {

@@ -7,6 +7,7 @@ const closeButtonEdit = document.querySelector(".popup__close-button");
 //pegar o botão de add e armazenar no valor addButton
 const addButton = document.querySelector(".profile__add-button");
 
+//Pegar o botão de fechar e armazenar no valor closeButtonAdd
 const closeButtonAdd = document.querySelector(".popup-new-local__close-button");
 
 //pegando elemento do popup para adicionar a função
@@ -17,9 +18,12 @@ const popupProfile = document.querySelector(".popup-profile");
 //de abertura do popup mudando a visibilidade do popup para new local
 const popupNewLocal = document.querySelector(".popup-new-local");
 
+const popupNewLocalForm = document.querySelector(".popup-new-local__form");
+
 //elemento pai dos elementos card
 const cardsWrapper = document.querySelector(".elements");
 
+//Esse código está pegando um template HTML e extraindo o conteúdo dele para usar como um “card”
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".element");
@@ -43,6 +47,16 @@ const formElement = document.querySelector(".popup__form");
 
 //chamar formulário do add local
 const formElementAddCard = document.querySelector(".popup-new-local__form");
+
+//Variavel criada com arrow function para remover os cards
+const deleteCard = (evt) => {
+  evt.target.closest(".element").remove();
+};
+
+//Variavel criada com arrow function para preencher o botao de like
+const handleLikeButton = (evt) => {
+  evt.target.classList.toggle("element__like-button-active");
+};
 
 //função para abrir o popup
 function openPopup(modal) {
@@ -110,7 +124,6 @@ const initialCards = [
   },
   {
     name: "Latemar",
-    //ajustar imagnes no css
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
   },
   {
@@ -132,6 +145,22 @@ function addCard(data) {
 
   //adiciona o nome colocado pelo usuário
   const cardTitle = cardElement.querySelector(".element__paragraph");
+
+  // adicionar variavel para deletar o card
+  const deleteButton = cardElement.querySelector(".element__delete-teste");
+
+  //criando variável para preencher o botão de like
+  const likeButton = cardElement.querySelector(".element__like-button");
+
+  //chamar evento de click para deletar o card usando a variavel deleteButton
+  deleteButton.addEventListener("click", deleteCard);
+
+  //adicionando evento de click para preencher o botão de like
+  likeButton.addEventListener("click", handleLikeButton);
+
+  cardImage.addEventListener("click", () => {
+    this.src = cardImage["element__image"];
+  });
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
@@ -160,7 +189,7 @@ function renderCardSubmit(evt) {
     {
       //salva as informações passadas pelo usuário e renderiza um novo card
       name: cardNameInput.value,
-      image: cardImageInput.value,
+      link: cardImageInput.value,
     },
     cardsWrapper
   );
@@ -169,4 +198,5 @@ function renderCardSubmit(evt) {
   closePopup(popupNewLocal);
 }
 
-//função para limpar o input
+//evento de click para chamar o formulario do novo local com a função rendercardsubmit
+popupNewLocalForm.addEventListener("submit", renderCardSubmit);
