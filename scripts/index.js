@@ -48,6 +48,20 @@ const formElement = document.querySelector(".popup__form");
 //chamar formulário do add local
 const formElementAddCard = document.querySelector(".popup-new-local__form");
 
+//variavel criada para popup do container da imagem
+const modalImage = document.querySelector(".popup__image-container");
+
+//variavel criada para puxar o popup da foto
+const imagePopup = document.querySelector(".popup__image");
+
+//variavel criada para puxar o popupo da  descrição
+const imagePopupDescription = document.querySelector(
+  ".popup__image-description"
+);
+
+//variavel criada para fechar o popup da imagem
+const closeButtonImage = document.querySelector(".popup__image-close-button");
+
 //Variavel criada com arrow function para remover os cards
 const deleteCard = (evt) => {
   evt.target.closest(".element").remove();
@@ -60,7 +74,6 @@ const handleLikeButton = (evt) => {
 
 //função para abrir o popup
 function openPopup(modal) {
-  console.log("open popup", modal);
   //Passa o que está na tela para o popup
   nameInput.value = profileName.textContent;
   aboutInput.value = profileDescription.textContent;
@@ -93,6 +106,19 @@ addButton.addEventListener("click", () => {
 closeButtonAdd.addEventListener("click", () => {
   closePopup(popupNewLocal);
 });
+
+//Adicionando o evento de click para fechar o popup da imagem
+closeButtonImage.addEventListener("click", () => {
+  closePopup(modalImage);
+});
+
+//função para abrir o popup da imagem
+function openImageModal(data) {
+  imagePopup.src = data.link;
+  imagePopupDescription.textContent = data.name;
+
+  openPopup(modalImage);
+}
 
 function handleProfileFormSubmit(evt) {
   //evita o comportamento de resetar e enviar os formulários
@@ -159,7 +185,7 @@ function addCard(data) {
   likeButton.addEventListener("click", handleLikeButton);
 
   cardImage.addEventListener("click", () => {
-    this.src = cardImage["element__image"];
+    openImageModal(data);
   });
 
   cardImage.src = data.link;

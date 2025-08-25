@@ -1,0 +1,64 @@
+.popup__image-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.popup__image-inner-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  max-height: 75vh;
+  max-width: 75vw;
+  width: auto;
+  height: auto;
+  position: relative;
+}
+
+.popup__image-close-button {
+  width: 33px;
+  height: 33px;
+  background-image: url("../images/close-button.png");
+  background-color: transparent;
+  position: absolute;
+  border: 0;
+  z-index: 3;
+  top: -37px;
+  right: -39px;
+}
+
+.popup__image {
+  height: 100%;
+  width: 100%;
+}
+
+.popup__opened {
+  display: flex;
+}
+
+.popup__image-description {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 544px) {
+  .popup__image-inner-container {
+    width: 90%;
+  }
+
+  .popup__image-close-button {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    background-size: 26px;
+    top: -40px;
+    right: -5px;
+    border: 0;
+  }
+}
