@@ -65,9 +65,27 @@ const closeButtonImage = document.querySelector(".popup__image-close-button");
 //validação de campos do formulário
 const forms = document.querySelectorAll(".popup__form");
 
+//função para verificar se tem input invalido
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+//função para alternar estado do botão
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add("popup__submit-button-disabled");
+  } else {
+    buttonElement.disabled = false;
+    buttonElement.classList.remove("popup__submit-button-disabled");
+  }
+};
+
 //itera sobre os formulários para achar os inputs com id de erro
 forms.forEach((form) => {
-  const formInputs = form.querySelectorAll(".popup__input");
+  const formInputs = Array.from(form.querySelectorAll(".popup__input"));
   const formError = form.querySelector(`.${formInputs.id}-error`);
   const disabledButton = form.querySelector(".popup__submit-button");
 
@@ -75,19 +93,12 @@ forms.forEach((form) => {
   formInputs.forEach((input) => {
     const isValid = input.validity.valid;
     input.addEventListener("input", function (evt) {
-      // condicional que chama função caso a constante seja valida ou não
       if (!isValid) {
         showInputError(form, input, input.validationMessage);
-        //habilita a classe que deixa o botao inativo
-        disabledButton.disabled = true;
-        disabledButton.classList.add("popup__submit-button-disabled");
-        form.querySelector(".popup__submit-button").disabled = true;
       } else {
         hideInputError(form, input);
-        //desabilita a classe que deixa o botao inativo
-        disabledButton.disabled = false;
-        disabledButton.classList.remove("popup__submit-button-disabled");
       }
+      toggleButtonState(formInputs, disabledButton);
     });
   });
 });
@@ -105,13 +116,6 @@ const hideInputError = (formElement, inputElement) => {
   inputElement.classList.remove("form__input_type_error");
   errorElement.classList.remove("form__input-error_active");
   errorElement.textContent = "";
-};
-
-//função para verificar se tem input invalido
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
 };
 
 //Variavel criada com arrow function para remover os cards
