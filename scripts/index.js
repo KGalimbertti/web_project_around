@@ -69,14 +69,12 @@ const forms = document.querySelectorAll(".popup__form");
 forms.forEach((form) => {
   const formInputs = form.querySelectorAll(".popup__input");
   const formError = form.querySelector(`.${formInputs.id}-error`);
-  const disabledButton = document.querySelector(".popup__submit-button");
-  console.log(disabledButton);
+  const disabledButton = form.querySelector(".popup__submit-button");
 
   // itera sobre o input para validar se está com os requisitos obrigatórios
   formInputs.forEach((input) => {
+    const isValid = input.validity.valid;
     input.addEventListener("input", function (evt) {
-      const isValid = input.validity.valid;
-
       // condicional que chama função caso a constante seja valida ou não
       if (!isValid) {
         showInputError(form, input, input.validationMessage);
@@ -86,7 +84,7 @@ forms.forEach((form) => {
         form.querySelector(".popup__submit-button").disabled = true;
       } else {
         hideInputError(form, input);
-        //desbilita a classe que deixa o botao inativo
+        //desabilita a classe que deixa o botao inativo
         disabledButton.disabled = false;
         disabledButton.classList.remove("popup__submit-button-disabled");
       }
