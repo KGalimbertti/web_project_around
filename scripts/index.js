@@ -10,23 +10,23 @@ const addButton = document.querySelector(".profile__add-button");
 //Pegar o botão de fechar e armazenar no valor closeButtonAdd
 const closeButtonAdd = document.querySelector(".popup-new-local__close-button");
 
-//pegando elemento do popup para adicionar a função
+//pegando cardo do popup para adicionar a função
 //de abertura do popup mudando a visibilidade do popup
 const popupProfile = document.querySelector(".popup-profile");
 
-//pegando elemento do popup para adicionar a função
+//pegando cardo do popup para adicionar a função
 //de abertura do popup mudando a visibilidade do popup para new local
 const popupNewLocal = document.querySelector(".popup-new-local");
 
 const popupNewLocalForm = document.querySelector(".popup-new-local__form");
 
-//elemento pai dos elementos card
-const cardsWrapper = document.querySelector(".elements");
+//cardo pai dos cardos card
+const cardsWrapper = document.querySelector(".cards");
 
 //Esse código está pegando um template HTML e extraindo o conteúdo dele para usar como um “card”
 const cardTemplate = document
   .querySelector("#card-template")
-  .content.querySelector(".element");
+  .content.querySelector(".card");
 
 //variável que armazenara a imagem do card
 const cardImageInput = document.querySelector(".popup-new-local__input-image");
@@ -34,7 +34,7 @@ const cardImageInput = document.querySelector(".popup-new-local__input-image");
 //variável que armazenara o nome do card
 const cardNameInput = document.querySelector(".popup-new-local__input-name");
 
-//pega o elemento pelo id
+//pega o cardo pelo id
 const nameInput = document.querySelector("#name");
 const aboutInput = document.querySelector("#about");
 
@@ -43,10 +43,10 @@ const profileName = document.querySelector(".profile__text-name");
 const profileDescription = document.querySelector(".profile__text-description");
 
 //chamar o formulário
-const formElement = document.querySelector(".popup__form");
+const formcard = document.querySelector(".popup__form");
 
 //chamar formulário do add local
-const formElementAddCard = document.querySelector(".popup-new-local__form");
+const formcardAddCard = document.querySelector(".popup-new-local__form");
 
 //variavel criada para popup do container da imagem
 const modalImage = document.querySelector(".popup__image-container");
@@ -62,14 +62,68 @@ const imagePopupDescription = document.querySelector(
 //variavel criada para fechar o popup da imagem
 const closeButtonImage = document.querySelector(".popup__image-close-button");
 
+//validação de campos do formulário
+const forms = document.querySelectorAll(".popup__form");
+
+//itera sobre os formulários para achar os inputs com id de erro
+forms.forEach((form) => {
+  const formInputs = form.querySelectorAll(".popup__input");
+  const formError = form.querySelector(`.${formInputs.id}-error`);
+  const disabledButton = document.querySelector(".popup__submit-button");
+  console.log(disabledButton);
+
+  // itera sobre o input para validar se está com os requisitos obrigatórios
+  formInputs.forEach((input) => {
+    input.addEventListener("input", function (evt) {
+      const isValid = input.validity.valid;
+
+      // condicional que chama função caso a constante seja valida ou não
+      if (!isValid) {
+        showInputError(form, input, input.validationMessage);
+        //habilita a classe que deixa o botao inativo
+        disabledButton.disabled = true;
+        disabledButton.classList.add("popup__submit-button-disabled");
+        form.querySelector(".popup__submit-button").disabled = true;
+      } else {
+        hideInputError(form, input);
+        //desbilita a classe que deixa o botao inativo
+        disabledButton.disabled = false;
+        disabledButton.classList.remove("popup__submit-button-disabled");
+      }
+    });
+  });
+});
+
+// mostra o erro no input caso não cumpra os requisitos
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+};
+// esconde o erro no input caso não cumpra os requisito
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+};
+
+//função para verificar se tem input invalido
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
 //Variavel criada com arrow function para remover os cards
 const deleteCard = (evt) => {
-  evt.target.closest(".element").remove();
+  evt.target.closest(".card").remove();
 };
 
 //Variavel criada com arrow function para preencher o botao de like
 const handleLikeButton = (evt) => {
-  evt.target.classList.toggle("element__like-button-active");
+  evt.target.classList.toggle("card__like-button-active");
 };
 
 //função para abrir o popup
@@ -133,7 +187,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 //quando o formulário for enviado vamos chamar a função handle que evita o comportamento padrão
-formElement.addEventListener("submit", handleProfileFormSubmit);
+formcard.addEventListener("submit", handleProfileFormSubmit);
 
 const initialCards = [
   {
@@ -164,19 +218,19 @@ const initialCards = [
 
 function addCard(data) {
   //cria um clone da variável cardTemplate
-  const cardElement = cardTemplate.cloneNode(true);
+  const card = cardTemplate.cloneNode(true);
 
   //adiciona a imagem colocada pelo usuário
-  const cardImage = cardElement.querySelector(".element__image");
+  const cardImage = card.querySelector(".card__image");
 
   //adiciona o nome colocado pelo usuário
-  const cardTitle = cardElement.querySelector(".element__paragraph");
+  const cardTitle = card.querySelector(".card__paragraph");
 
   // adicionar variavel para deletar o card
-  const deleteButton = cardElement.querySelector(".element__delete-teste");
+  const deleteButton = card.querySelector(".card__delete-teste");
 
   //criando variável para preencher o botão de like
-  const likeButton = cardElement.querySelector(".element__like-button");
+  const likeButton = card.querySelector(".card__like-button");
 
   //chamar evento de click para deletar o card usando a variavel deleteButton
   deleteButton.addEventListener("click", deleteCard);
@@ -193,8 +247,8 @@ function addCard(data) {
 
   cardTitle.textContent = data.name;
 
-  //retorna o cardElement
-  return cardElement;
+  //retorna o card
+  return card;
 }
 
 function renderCard(data, wrap) {
