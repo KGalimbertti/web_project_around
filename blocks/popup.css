@@ -58,7 +58,6 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
-  margin-bottom: 30px;
   border: 0;
   border-bottom: 1px solid black;
 }
@@ -81,6 +80,15 @@
 
 .popup__submit-button:hover {
   opacity: 0.6;
+}
+
+.popup__span {
+  color: red;
+}
+
+.popup__submit-button-disabled {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 544px) {

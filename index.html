@@ -44,14 +44,14 @@
 
       <!--CARDS-->
 
-      <section class="elements"></section>
+      <section class="cards"></section>
 
       <!--POPUP-->
 
       <div class="popup-profile">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-          <form class="popup__form">
+          <form class="popup__form" novalidate>
             <h2 class="popup__title">Editar Perfil</h2>
             <label class="popup__label" for="name"></label>
             <input
@@ -60,7 +60,11 @@
               type="text"
               name="name"
               id="name"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="popup__span" id="name-error"></span>
             <label class="popup__label" for="about"></label>
             <input
               placeholder="Sobre mim"
@@ -68,7 +72,11 @@
               type="text"
               name="about"
               id="about"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="popup__span" id="about-error"></span>
             <button class="popup__submit-button" type="submit">Salvar</button>
           </form>
         </div>
@@ -77,27 +85,27 @@
       <div class="popup-new-local">
         <div class="popup-new-local__container">
           <button class="popup-new-local__close-button" type="button"></button>
-          <form class="popup-new-local__form">
+          <form class="popup__form" novalidate>
             <h2 class="popup-new-local__title">Novo local</h2>
             <label class="popup-new-local__label" for="name"></label>
             <input
               placeholder="Titulo"
-              class="popup-new-local__input popup-new-local__input-name"
+              class="popup__input popup-new-local__input-name"
               type="text"
               name="name"
-              id="name"
+              id="new-local"
             />
+            <span class="popup__span" id="new-local-error"></span>
             <label class="popup-new-local__label" for="about"></label>
             <input
               placeholder="Link de imagem"
-              class="popup-new-local__input popup-new-local__input-image"
-              type="text"
+              class="popup__input popup-new-local__input-image"
+              type="url"
               name="about"
-              id="about"
+              id="link"
             />
-            <button class="popup-new-local__submit-button" type="submit">
-              Criar
-            </button>
+            <span class="popup__span" id="link-error"></span>
+            <button class="popup__submit-button" type="submit">Criar</button>
           </form>
         </div>
       </div>
@@ -116,19 +124,19 @@
       <p class="footer__text">&copy; 2025 Around The U.S.</p>
     </footer>
     <template id="card-template">
-      <div class="element">
-        <button class="element__delete-teste">
+      <div class="card">
+        <button class="card__delete-teste">
           <img
-            class="element__delete-button"
+            class="card__delete-button"
             src="./images/delete-button.png"
             alt="Lixeira"
           />
         </button>
-        <img class="element__image" src="#" alt="" />
-        <div class="element__description">
-          <p class="element__paragraph"></p>
+        <img class="card__image" src="#" alt="" />
+        <div class="card__description">
+          <p class="card__paragraph"></p>
           <img
-            class="element__like-button"
+            class="card__like-button"
             src="./images/like-button.png"
             alt="Coração"
           />
