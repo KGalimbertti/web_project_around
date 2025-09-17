@@ -143,6 +143,23 @@ function closePopup(modal) {
   modal.classList.remove("popup__opened");
 }
 
+// função para fechar o popup clicando fora dele
+const overlays = document.querySelectorAll(".popup__overlay");
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", (evt) => {
+    closePopup(overlay.firstElementChild);
+  });
+});
+
+// função para fechar o popup pressionando botão esc
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(popupProfile);
+    closePopup(popupNewLocal);
+    closePopup(modalImage);
+  }
+});
+
 //Adicionando o evento de click para abrir o popup
 editButton.addEventListener("click", () => {
   openPopup(popupProfile);
