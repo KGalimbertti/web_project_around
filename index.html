@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,92 +47,83 @@
       <section class="cards"></section>
 
       <!--POPUP-->
-      <div class="popup__overlay">
-        <div class="popup-profile">
-          <div class="popup__container">
-            <button class="popup__close-button" type="button"></button>
-            <form class="popup__form" novalidate>
-              <h2 class="popup__title">Editar Perfil</h2>
-              <label class="popup__label" for="name"></label>
-              <input
-                placeholder="Nome"
-                class="popup__input"
-                type="text"
-                name="name"
-                id="name"
-                minlength="2"
-                maxlength="40"
-                required
-              />
-              <span class="popup__span" id="name-error"></span>
-              <label class="popup__label" for="about"></label>
-              <input
-                placeholder="Sobre mim"
-                class="popup__input"
-                type="text"
-                name="about"
-                id="about"
-                minlength="2"
-                maxlength="200"
-                required
-              />
-              <span class="popup__span" id="about-error"></span>
-              <button class="popup__submit-button" type="submit">Salvar</button>
-            </form>
-          </div>
+      <div class="popup-profile popup__overlay">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button"></button>
+          <form class="popup__form" novalidate>
+            <h2 class="popup__title">Editar Perfil</h2>
+            <label class="popup__label" for="name"></label>
+            <input
+              placeholder="Nome"
+              class="popup__input"
+              type="text"
+              name="name"
+              id="name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__span" id="name-error"></span>
+            <label class="popup__label" for="about"></label>
+            <input
+              placeholder="Sobre mim"
+              class="popup__input"
+              type="text"
+              name="about"
+              id="about"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__span" id="about-error"></span>
+            <button class="popup__submit-button" type="submit">Salvar</button>
+          </form>
         </div>
       </div>
 
-      <div class="popup__overlay">
-        <div class="popup-new-local">
-          <div class="popup-new-local__container">
+      <div class="popup-new-local popup__overlay">
+        <div class="popup-new-local__container">
+          <button class="popup-new-local__close-button" type="button"></button>
+          <form class="popup__form" novalidate>
+            <h2 class="popup-new-local__title">Novo local</h2>
+            <label class="popup-new-local__label" for="name"></label>
+            <input
+              placeholder="Titulo"
+              class="popup__input popup-new-local__input-name"
+              type="text"
+              name="name"
+              id="new-local"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__span" id="new-local-error"></span>
+            <label class="popup-new-local__label" for="about"></label>
+            <input
+              placeholder="Link de imagem"
+              class="popup__input popup-new-local__input-image"
+              type="url"
+              name="about"
+              id="link"
+              required
+            />
+            <span class="popup__span" id="link-error"></span>
             <button
-              class="popup-new-local__close-button"
-              type="button"
-            ></button>
-            <form class="popup__form" novalidate>
-              <h2 class="popup-new-local__title">Novo local</h2>
-              <label class="popup-new-local__label" for="name"></label>
-              <input
-                placeholder="Titulo"
-                class="popup__input popup-new-local__input-name"
-                type="text"
-                name="name"
-                id="new-local"
-                minlength="2"
-                maxlength="30"
-                required
-              />
-              <span class="popup__span" id="new-local-error"></span>
-              <label class="popup-new-local__label" for="about"></label>
-              <input
-                placeholder="Link de imagem"
-                class="popup__input popup-new-local__input-image"
-                type="url"
-                name="about"
-                id="link"
-                required
-              />
-              <span class="popup__span" id="link-error"></span>
-              <button
-                class="popup__submit-button popup__submit-button-disabled"
-                type="submit"
-                disabled
-              >
-                Criar
-              </button>
-            </form>
-          </div>
+              class="popup__submit-button popup__submit-button-disabled"
+              type="submit"
+              disabled
+            >
+              Criar
+            </button>
+          </form>
         </div>
       </div>
 
-      <div class="popup__overlay">
-        <div class="popup__image-container">
-          <div class="popup__image-inner-container">
-            <button class="popup__image-close-button" type="button"></button>
-            <img class="popup__image" src="" alt="" />
-            <p class="popup__image-description"></p>
-          </div>
+      <div class="popup__image-container popup__overlay">
+        <div class="popup__image-inner-container">
+          <button class="popup__image-close-button" type="button"></button>
+          <img class="popup__image" src="" alt="" />
+          <p class="popup__image-description"></p>
         </div>
       </div>
     </main>
@@ -163,5 +154,6 @@
       </div>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
