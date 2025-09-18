@@ -84,13 +84,14 @@ overlays.forEach((overlay) => {
 
 //arrumar a função abaixo
 // função para fechar o popup pressionando botão esc
-document.addEventListener("keydown", (evt) => {
+const handleKeydown = (evt) => {
   if (evt.key === "Escape") {
     closePopup(popupProfile);
     closePopup(popupNewLocal);
     closePopup(modalImage);
   }
-});
+};
+document.addEventListener("keydown", handleKeydown);
 
 //função para abrir o popup
 function openPopup(modal) {
@@ -105,6 +106,7 @@ function openPopup(modal) {
 //função para fechar o popup
 function closePopup(modal) {
   modal.classList.remove("popup__opened");
+  document.removeEventListener("keydown", handleKeydown);
 }
 
 //Adicionando o evento de click para abrir o popup
