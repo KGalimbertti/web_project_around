@@ -39,7 +39,10 @@
             <button class="profile__edit-button"></button>
           </div>
         </div>
-        <button class="profile__add-button" type="submit"></button>
+        <button
+          class="profile__add-button popup__button"
+          type="submit"
+        ></button>
       </section>
 
       <!--CARDS-->
@@ -50,12 +53,12 @@
       <div class="popup-profile popup__overlay">
         <div class="popup__container">
           <button class="popup__close-button" type="button"></button>
-          <form class="popup__form" novalidate>
+          <form class="popup__form popup-profile__form" novalidate>
             <h2 class="popup__title">Editar Perfil</h2>
             <label class="popup__label" for="name"></label>
             <input
               placeholder="Nome"
-              class="popup__input"
+              class="popup__input popup__input-name"
               type="text"
               name="name"
               id="name"
@@ -76,7 +79,9 @@
               required
             />
             <span class="popup__span" id="about-error"></span>
-            <button class="popup__submit-button" type="submit">Salvar</button>
+            <button class="popup__submit-button popup__button" type="submit">
+              Salvar
+            </button>
           </form>
         </div>
       </div>
@@ -84,7 +89,7 @@
       <div class="popup-new-local popup__overlay">
         <div class="popup-new-local__container">
           <button class="popup-new-local__close-button" type="button"></button>
-          <form class="popup__form" novalidate>
+          <form class="popup__form popup-new-local__form" novalidate>
             <h2 class="popup-new-local__title">Novo local</h2>
             <label class="popup-new-local__label" for="name"></label>
             <input
@@ -98,18 +103,18 @@
               required
             />
             <span class="popup__span" id="new-local-error"></span>
-            <label class="popup-new-local__label" for="about"></label>
+            <label class="popup-new-local__label" for="link"></label>
             <input
               placeholder="Link de imagem"
               class="popup__input popup-new-local__input-image"
               type="url"
-              name="about"
+              name="link"
               id="link"
               required
             />
             <span class="popup__span" id="link-error"></span>
             <button
-              class="popup__submit-button popup__submit-button-disabled"
+              class="popup__submit-button popup__submit-button-disabled popup__button"
               type="submit"
               disabled
             >
@@ -153,7 +158,6 @@
         </div>
       </div>
     </template>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

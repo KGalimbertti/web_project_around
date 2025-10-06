@@ -1,0 +1,52 @@
+import { openImageModal } from "./utils.js";
+
+class Card {
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
+  }
+
+  _getTemplate() {
+    return document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
+  }
+
+  addCard() {
+    this._card = this._getTemplate();
+
+    this._cardImage = this._card.querySelector(".card__image");
+    console.log(this._cardImage);
+    this._cardTitle = this._card.querySelector(".card__paragraph");
+    this._deleteButton = this._card.querySelector(".card__delete-teste");
+    this._likeButton = this._card.querySelector(".card__like-button");
+    this._setEventListener();
+
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
+
+    return this._card;
+  }
+
+  _handleLikeButton = () => {
+    this._likeButton.target.classList.toggle("card__like-button-active");
+  };
+
+  _handleDeleteCard = () => {
+    this._card.remove();
+    this._card = null;
+  };
+
+  _setEventListener() {
+    this._likeButton.addEventListener("click", this._handleLikeButton);
+    this._deleteButton.addEventListener("click", this._handleDeleteCard);
+    this._cardImage.addEventListener("click", () => {
+      openImageModal({ link: this._link, name: this._cardTitle.textContent });
+    });
+  }
+}
+
+export default Card;

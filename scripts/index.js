@@ -1,3 +1,16 @@
+import {
+  handleKeydown,
+  handleProfileFormSubmit,
+  openPopup,
+  closePopup,
+  openImageModal,
+  handleLikeButton,
+  deleteCard,
+} from "./utils.js";
+
+import FormValidator from "./Formvalidator.js";
+import Card from "./cards.js";
+
 //Pegar o botão de editar e armazenar no valor editButton
 const editButton = document.querySelector(".profile__edit-button");
 
@@ -10,17 +23,18 @@ const addButton = document.querySelector(".profile__add-button");
 //Pegar o botão de fechar e armazenar no valor closeButtonAdd
 const closeButtonAdd = document.querySelector(".popup-new-local__close-button");
 
-//pegando cardo do popup para adicionar a função
+//pegando card do popup para adicionar a função
 //de abertura do popup mudando a visibilidade do popup
 const popupProfile = document.querySelector(".popup-profile");
 
-//pegando cardo do popup para adicionar a função
+//pegando card do popup para adicionar a função
 //de abertura do popup mudando a visibilidade do popup para new local
 const popupNewLocal = document.querySelector(".popup-new-local");
 
 const popupNewLocalForm = document.querySelector(".popup-new-local__form");
+const popupProfileForm = document.querySelector(".popup-profile__form");
 
-//cardo pai dos cardos card
+//card pai dos cards
 const cardsWrapper = document.querySelector(".cards");
 
 //Esse código está pegando um template HTML e extraindo o conteúdo dele para usar como um “card”
@@ -34,43 +48,14 @@ const cardImageInput = document.querySelector(".popup-new-local__input-image");
 //variável que armazenara o nome do card
 const cardNameInput = document.querySelector(".popup-new-local__input-name");
 
-//pega o cardo pelo id
-const nameInput = document.querySelector("#name");
-const aboutInput = document.querySelector("#about");
-
-//Deixar o nome e descrição fixos quando abrir o popup
-const profileName = document.querySelector(".profile__text-name");
-const profileDescription = document.querySelector(".profile__text-description");
-
 //chamar o formulário
 const formcard = document.querySelector(".popup__form");
-
-//chamar formulário do add local
-const formcardAddCard = document.querySelector(".popup-new-local__form");
 
 //variavel criada para popup do container da imagem
 const modalImage = document.querySelector(".popup__image-container");
 
-//variavel criada para puxar o popup da foto
-const imagePopup = document.querySelector(".popup__image");
-
-//variavel criada para puxar o popupo da  descrição
-const imagePopupDescription = document.querySelector(
-  ".popup__image-description"
-);
-
 //variavel criada para fechar o popup da imagem
 const closeButtonImage = document.querySelector(".popup__image-close-button");
-
-//Variavel criada com arrow function para remover os cards
-const deleteCard = (evt) => {
-  evt.target.closest(".card").remove();
-};
-
-//Variavel criada com arrow function para preencher o botao de like
-const handleLikeButton = (evt) => {
-  evt.target.classList.toggle("card__like-button-active");
-};
 
 // função para fechar o popup clicando fora dele
 const overlays = document.querySelectorAll(".popup__overlay");
@@ -82,32 +67,7 @@ overlays.forEach((overlay) => {
   });
 });
 
-//arrumar a função abaixo
-// função para fechar o popup pressionando botão esc
-const handleKeydown = (evt) => {
-  if (evt.key === "Escape") {
-    closePopup(popupProfile);
-    closePopup(popupNewLocal);
-    closePopup(modalImage);
-  }
-};
 document.addEventListener("keydown", handleKeydown);
-
-//função para abrir o popup
-function openPopup(modal) {
-  //Passa o que está na tela para o popup
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileDescription.textContent;
-
-  //adiciona a classe popup__opened
-  modal.classList.add("popup__opened");
-}
-
-//função para fechar o popup
-function closePopup(modal) {
-  modal.classList.remove("popup__opened");
-  document.removeEventListener("keydown", handleKeydown);
-}
 
 //Adicionando o evento de click para abrir o popup
 editButton.addEventListener("click", () => {
@@ -133,27 +93,6 @@ closeButtonAdd.addEventListener("click", () => {
 closeButtonImage.addEventListener("click", () => {
   closePopup(modalImage);
 });
-
-//função para abrir o popup da imagem
-function openImageModal(data) {
-  imagePopup.src = data.link;
-  imagePopup.alt = data.name;
-  imagePopupDescription.textContent = data.name;
-
-  openPopup(modalImage);
-}
-
-function handleProfileFormSubmit(evt) {
-  //evita o comportamento de resetar e enviar os formulários
-  evt.preventDefault();
-
-  //passar o que está no popup para a tela
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = aboutInput.value;
-
-  //chamar a função de fechar assim que enviar o formulário
-  closePopup(popupProfile);
-}
 
 //quando o formulário for enviado vamos chamar a função handle que evita o comportamento padrão
 formcard.addEventListener("submit", handleProfileFormSubmit);
@@ -185,40 +124,9 @@ const initialCards = [
   },
 ];
 
-function addCard(data) {
-  //cria um clone da variável cardTemplate
-  const card = cardTemplate.cloneNode(true);
-
-  //adiciona a imagem colocada pelo usuário
-  const cardImage = card.querySelector(".card__image");
-
-  //adiciona o nome colocado pelo usuário
-  const cardTitle = card.querySelector(".card__paragraph");
-
-  // adicionar variavel para deletar o card
-  const deleteButton = card.querySelector(".card__delete-teste");
-
-  //criando variável para preencher o botão de like
-  const likeButton = card.querySelector(".card__like-button");
-
-  //chamar evento de click para deletar o card usando a variavel deleteButton
-  deleteButton.addEventListener("click", deleteCard);
-
-  //adicionando evento de click para preencher o botão de like
-  likeButton.addEventListener("click", handleLikeButton);
-
-  cardImage.addEventListener("click", () => {
-    openImageModal(data);
-  });
-
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-
-  cardTitle.textContent = data.name;
-
-  //retorna o card
-  return card;
-}
+const addCard = (data) => {
+  return new Card(data, "#card-template").addCard();
+};
 
 function prependCard(data, wrap) {
   //empurra os cartões para a direita ao adicionar um novo cartão
@@ -249,3 +157,9 @@ function prependCardSubmit(evt) {
 
 //evento de click para chamar o formulario do novo local com a função prependCardsubmit
 popupNewLocalForm.addEventListener("submit", prependCardSubmit);
+
+const profileValidator = new FormValidator(popupProfileForm, ".popup__input");
+profileValidator.enableValidation();
+
+const localValidator = new FormValidator(popupNewLocalForm, ".popup__input");
+localValidator.enableValidation();
