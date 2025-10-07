@@ -18,7 +18,6 @@ class Card {
     this._card = this._getTemplate();
 
     this._cardImage = this._card.querySelector(".card__image");
-    console.log(this._cardImage);
     this._cardTitle = this._card.querySelector(".card__paragraph");
     this._deleteButton = this._card.querySelector(".card__delete-teste");
     this._likeButton = this._card.querySelector(".card__like-button");

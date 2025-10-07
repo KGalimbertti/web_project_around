@@ -47,7 +47,6 @@ class FormValidator {
       const isValid = input.validity.valid;
       input.addEventListener("input", (evt) => {
         if (!isValid) {
-          console.log(this);
           this._showInputError(
             this._formElement,
             input,

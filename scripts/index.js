@@ -8,8 +8,8 @@ import {
   deleteCard,
 } from "./utils.js";
 
-import FormValidator from "./Formvalidator.js";
-import Card from "./cards.js";
+import FormValidator from "./FormValidator.js";
+import Card from "./Card.js";
 
 //Pegar o botão de editar e armazenar no valor editButton
 const editButton = document.querySelector(".profile__edit-button");
