@@ -44,8 +44,8 @@ class FormValidator {
 
     this._toggleButtonState(inputList, buttonElement);
     inputList.forEach((input) => {
-      const isValid = input.validity.valid;
       input.addEventListener("input", (evt) => {
+        const isValid = input.validity.valid;
         if (!isValid) {
           this._showInputError(
             this._formElement,
@@ -53,7 +53,7 @@ class FormValidator {
             input.validationMessage
           );
         } else {
-          this._hideInputError(this._formElement, this._inputElement);
+          this._hideInputError(this._formElement, input);
         }
         this._toggleButtonState(inputList, buttonElement);
       });
@@ -62,7 +62,7 @@ class FormValidator {
 
   enableValidation() {
     this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefatult();
+      evt.preventDefault();
     });
     this._setEventListeners();
   }

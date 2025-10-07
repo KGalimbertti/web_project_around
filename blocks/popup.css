@@ -27,12 +27,7 @@
   background-color: white;
 }
 
-.profile__text-name {
-  text-overflow: ellipsis;
-}
-.profile__text-description {
-  text-overflow: ellipsis;
-}
+
 
 .popup__close-button {
   width: 33px;
