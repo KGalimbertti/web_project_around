@@ -1,10 +1,11 @@
 import { openImageModal } from "./utils.js";
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -22,6 +23,7 @@ class Card {
     this._deleteButton = this._card.querySelector(".card__delete-teste");
     this._likeButton = this._card.querySelector(".card__like-button");
     this._setEventListener();
+    this._cardImage.addEventListener("click", this._handleCardClick);
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;

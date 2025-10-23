@@ -6,10 +6,15 @@ import {
   openImageModal,
   handleLikeButton,
   deleteCard,
+  popupConfig,
 } from "./utils.js";
 
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
+import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js";
 
 //Pegar o botão de editar e armazenar no valor editButton
 const editButton = document.querySelector(".profile__edit-button");
@@ -138,28 +143,34 @@ initialCards.forEach((card) => {
   prependCard(card, cardsWrapper);
 });
 
-function prependCardSubmit(evt) {
-  //evita o comportamento de resetar e enviar os formulários
-  evt.preventDefault();
-
-  prependCard(
-    {
-      //salva as informações passadas pelo usuário e renderiza um novo card
-      name: cardNameInput.value,
-      link: cardImageInput.value,
-    },
-    cardsWrapper
-  );
-
-  //chamar a função de fechar assim que enviar o formulário
-  closePopup(popupNewLocal);
-}
-
 //evento de click para chamar o formulario do novo local com a função prependCardsubmit
-popupNewLocalForm.addEventListener("submit", prependCardSubmit);
+// popupNewLocalForm.addEventListener("submit", prependCardSubmit);
 
 const profileValidator = new FormValidator(popupProfileForm, ".popup__input");
 profileValidator.enableValidation();
 
 const localValidator = new FormValidator(popupNewLocalForm, ".popup__input");
 localValidator.enableValidation();
+
+const newCardPopup = new PopupWithForm(
+  popupConfig.cardFormPopupSelector,
+  (data) => {
+    prependCard(data, cardsWrapper);
+  }
+);
+
+const newCardImage = new Card(
+  {
+    name: cardNameInput.value,
+    link: cardImageInput.value,
+  },
+  "#card-template",
+  () => {
+    openImageModal({
+      link: cardImageInput.value,
+      name: cardNameInput.value,
+    });
+  }
+);
+
+newCardPopup.setEventListeners();

@@ -6,11 +6,11 @@ class Section {
 
   renderItems() {
     this._renderItems.forEach((item) => {
-      this.container.append(item);
+      this.container.prepend(item);
     });
   }
 
   addItem(element) {
-    this.container.append(element);
+    this.container.prepend(element);
   }
 }

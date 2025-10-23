@@ -90,6 +90,8 @@ const deleteCard = (evt) => {
   evt.target.closest(".card").remove();
 };
 
+const popupConfig = { cardFormPopupSelector: ".popup-new-local" };
+
 export {
   handleKeydown,
   handleProfileFormSubmit,
@@ -98,4 +100,5 @@ export {
   openImageModal,
   handleLikeButton,
   deleteCard,
+  popupConfig,
 };
