@@ -13,7 +13,7 @@ class Card {
       .cloneNode(true);
   }
 
-  addCard() {
+  generateCard() {
     this._card = this._getTemplate();
 
     this._cardImage = this._card.querySelector(".card__image");
@@ -21,9 +21,8 @@ class Card {
     this._deleteButton = this._card.querySelector(".card__delete-teste");
     this._likeButton = this._card.querySelector(".card__like-button");
     this._setEventListener();
-    this._cardImage.addEventListener(
-      "click",
-      this._handleCardClick(this._link, this._name)
+    this._cardImage.addEventListener("click", () =>
+      this._handleCardClick({ imageCaption: this._name, imageLink: this._link })
     );
 
     this._cardImage.src = this._link;

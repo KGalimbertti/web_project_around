@@ -11,7 +11,7 @@ import {
 
 import FormValidator from "./FormValidator.js";
 import Card from "./Card.js";
-import Popup from "./Popup.js";
+import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
@@ -133,19 +133,14 @@ const initialCards = [
 
 const addCard = (data) => {
   return new Card(data, "#card-template", () =>
-    imagePopup.open(data.name, data.link)
-  ).addCard();
+    imagePopup.open({ imageCaption: data.name, imageLink: data.link })
+  ).generateCard();
 };
 
 function prependCard(data, wrap) {
   //empurra os cartões para a direita ao adicionar um novo cartão
   wrap.prepend(addCard(data));
 }
-
-initialCards.forEach((card) => {
-  //adiciona todos os cartões salvos em initial cards
-  prependCard(card, cardsWrapper);
-});
 
 //evento de click para chamar o formulario do novo local com a função prependCardsubmit
 // popupNewLocalForm.addEventListener("submit", prependCardSubmit);
@@ -155,13 +150,6 @@ profileValidator.enableValidation();
 
 const localValidator = new FormValidator(popupNewLocalForm, ".popup__input");
 localValidator.enableValidation();
-
-const newCardPopup = new PopupWithForm(
-  popupConfig.cardFormPopupSelector,
-  (data) => {
-    prependCard(data, cardsWrapper);
-  }
-);
 
 const newCardImage = new Card(
   {
@@ -177,5 +165,37 @@ const newCardImage = new Card(
   }
 );
 
+const newCardPopup = new PopupWithForm(
+  popupConfig.cardFormPopupSelector,
+  (data) => {
+    cardsList.addItem(addCard(data));
+  }
+);
+
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      cardsList.addItem(addCard(data));
+    },
+  },
+  ".cards"
+);
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__text-name",
+  aboutSelector: ".profile__text-description",
+});
+
+const userInfoPopup = new PopupWithForm(
+  popupConfig.userInfoPopupSelector,
+  (data) => {
+    console.log("teste", data);
+    userInfo.setUserInfo(data);
+  }
+);
+
 newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
+userInfoPopup.setEventListeners();
+cardsList.renderItems(initialCards);

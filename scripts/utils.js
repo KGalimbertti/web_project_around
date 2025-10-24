@@ -93,6 +93,7 @@ const deleteCard = (evt) => {
 const popupConfig = {
   cardFormPopupSelector: ".popup-new-local",
   cardImagePopupSelector: ".popup__image-container",
+  userInfoPopupSelector: ".popup-profile",
 };
 
 export {
