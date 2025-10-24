@@ -90,7 +90,10 @@ const deleteCard = (evt) => {
   evt.target.closest(".card").remove();
 };
 
-const popupConfig = { cardFormPopupSelector: ".popup-new-local" };
+const popupConfig = {
+  cardFormPopupSelector: ".popup-new-local",
+  cardImagePopupSelector: ".popup__image-container",
+};
 
 export {
   handleKeydown,

@@ -16,6 +16,8 @@ import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 
+const imagePopup = new PopupWithImage(popupConfig.cardImagePopupSelector);
+
 //Pegar o botão de editar e armazenar no valor editButton
 const editButton = document.querySelector(".profile__edit-button");
 
@@ -130,7 +132,9 @@ const initialCards = [
 ];
 
 const addCard = (data) => {
-  return new Card(data, "#card-template").addCard();
+  return new Card(data, "#card-template", () =>
+    imagePopup.open(data.name, data.link)
+  ).addCard();
 };
 
 function prependCard(data, wrap) {
@@ -174,3 +178,4 @@ const newCardImage = new Card(
 );
 
 newCardPopup.setEventListeners();
+imagePopup.setEventListeners();

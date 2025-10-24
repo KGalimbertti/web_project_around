@@ -1,5 +1,3 @@
-import { openImageModal } from "./utils.js";
-
 class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
@@ -23,7 +21,10 @@ class Card {
     this._deleteButton = this._card.querySelector(".card__delete-teste");
     this._likeButton = this._card.querySelector(".card__like-button");
     this._setEventListener();
-    this._cardImage.addEventListener("click", this._handleCardClick);
+    this._cardImage.addEventListener(
+      "click",
+      this._handleCardClick(this._link, this._name)
+    );
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -44,9 +45,6 @@ class Card {
   _setEventListener() {
     this._likeButton.addEventListener("click", this._handleLikeButton);
     this._deleteButton.addEventListener("click", this._handleDeleteCard);
-    this._cardImage.addEventListener("click", () => {
-      openImageModal({ link: this._link, name: this._cardTitle.textContent });
-    });
   }
 }
 
