@@ -24,6 +24,7 @@ class Card {
     this._cardImage.addEventListener("click", () =>
       this._handleCardClick({ imageCaption: this._name, imageLink: this._link })
     );
+    this._likeButton.addEventListener("click", this._handleLikeButton);
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -33,7 +34,7 @@ class Card {
   }
 
   _handleLikeButton = () => {
-    this._likeButton.target.classList.toggle("card__like-button-active");
+    this._likeButton.classList.toggle("card__like-button-active");
   };
 
   _handleDeleteCard = () => {

@@ -1,12 +1,10 @@
 import {
   handleKeydown,
-  handleProfileFormSubmit,
   openPopup,
   closePopup,
   openImageModal,
-  handleLikeButton,
-  deleteCard,
   popupConfig,
+  initialCards,
 } from "./utils.js";
 
 import FormValidator from "./FormValidator.js";
@@ -101,36 +99,6 @@ closeButtonImage.addEventListener("click", () => {
   closePopup(modalImage);
 });
 
-//quando o formulário for enviado vamos chamar a função handle que evita o comportamento padrão
-formcard.addEventListener("submit", handleProfileFormSubmit);
-
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
 const addCard = (data) => {
   return new Card(data, "#card-template", () =>
     imagePopup.open({ imageCaption: data.name, imageLink: data.link })
@@ -190,7 +158,6 @@ const userInfo = new UserInfo({
 const userInfoPopup = new PopupWithForm(
   popupConfig.userInfoPopupSelector,
   (data) => {
-    console.log("teste", data);
     userInfo.setUserInfo(data);
   }
 );

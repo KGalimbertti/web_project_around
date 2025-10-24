@@ -68,27 +68,32 @@ function openImageModal(data) {
   openPopup(modalImage);
 }
 
-function handleProfileFormSubmit(evt) {
-  //evita o comportamento de resetar e enviar os formulários
-  evt.preventDefault();
-
-  //passar o que está no popup para a tela
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = aboutInput.value;
-
-  //chamar a função de fechar assim que enviar o formulário
-  closePopup(popupProfile);
-}
-
-//Variavel criada com arrow function para preencher o botao de like
-const handleLikeButton = (evt) => {
-  evt.target.classList.toggle("card__like-button-active");
-};
-
-//Variavel criada com arrow function para remover os cards
-const deleteCard = (evt) => {
-  evt.target.closest(".card").remove();
-};
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
+];
 
 const popupConfig = {
   cardFormPopupSelector: ".popup-new-local",
@@ -98,11 +103,9 @@ const popupConfig = {
 
 export {
   handleKeydown,
-  handleProfileFormSubmit,
   openPopup,
   closePopup,
   openImageModal,
-  handleLikeButton,
-  deleteCard,
   popupConfig,
+  initialCards,
 };
