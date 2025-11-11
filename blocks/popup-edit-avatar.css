@@ -1,4 +1,4 @@
-.popup-confirmation {
+.popup-edit-avatar {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -7,14 +7,14 @@
   background-color: rgb(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
-  display: none;
+  display: block;
 }
 
 .popup__opened {
   display: flex;
 }
 
-.popup-confirmation__container {
+.popup-edit-avatar__container {
   width: 430px;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@
   background-color: white;
 }
 
-.popup-confirmation__close-button {
+.popup-edit-avatar__close-button {
   width: 33px;
   height: 33px;
   background-image: url("../images/close-button.png");
@@ -38,11 +38,11 @@
   right: -50px;
 }
 
-.popup-confirmation__close-button:hover {
+.popup-edit-avatar__close-button:hover {
   opacity: 0.6;
 }
 
-.popup-confirmation__title {
+.popup-edit-avatar__title {
   font-family: "Inter", sans-serif;
   font-weight: 900;
   font-size: 24px;
@@ -53,7 +53,7 @@
   text-align: center;
 }
 
-.popup-confirmation__submit-button {
+.popup-edit-avatar__submit-button {
   width: 358px;
   height: 50px;
   background-color: transparent;
@@ -65,16 +65,16 @@
   margin-top: 48px;
 }
 
-.popup-confirmation__submit-button:hover {
+.popup-edit-avatar__submit-button:hover {
   opacity: 0.6;
 }
 
 @media screen and (max-width: 544px) {
-  .popup-confirmation__container {
+  .popup-edit-avatar__container {
     width: 90%;
   }
 
-  .popup-confirmation__form {
+  .popup-edit-avatar__form {
     width: 282px;
     height: 322px;
     padding: 25px;
@@ -82,12 +82,12 @@
     border-radius: 10px;
   }
 
-  .popup-confirmation__submit-button {
+  .popup-edit-avatar__submit-button {
     width: 238px;
     height: 46px;
   }
 
-  .popup-confirmation__close-button {
+  .popup-edit-avatar__close-button {
     width: 26px;
     height: 26px;
     position: absolute;

@@ -142,6 +142,32 @@
             </button>
           </form>
         </div>
+      </div>
+
+      <div class="popup-edit-avatar popup__overlay">
+        <div class="popup-edit-avatar__container">
+          <button class="popup-edit-avatar__close-button" type="button"></button>
+          <form class="popup__form popup-edit-avatar__form" novalidate>
+            <h2 class="popup-edit-avatar__title">Atualizar avatar</h2>
+            <label class="popup-edit-avatar__label" for="avatar-link"></label>
+            <input
+              placeholder="Link de imagem"
+              class="popup__input popup-edit-avatar__input-avatar"
+              type="url"
+              name="avatar-link"
+              id="avatar-link"
+              required
+            />
+            <span class="popup__span" id="avatar-link-error"></span>
+            <button
+              class="popup__submit-button popup__submit-button-disabled popup__button"
+              type="submit"
+              disabled
+            >
+              Salvar
+            </button>
+          </form>
+        </div>
     </main>
 
     <!--FOOTER-->
