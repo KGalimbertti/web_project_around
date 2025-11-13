@@ -13,6 +13,7 @@ import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
+import Api from "./API.js";
 
 const imagePopup = new PopupWithImage(popupConfig.cardImagePopupSelector);
 
@@ -136,7 +137,9 @@ const newCardImage = new Card(
 const newCardPopup = new PopupWithForm(
   popupConfig.cardFormPopupSelector,
   (data) => {
-    cardsList.addItem(addCard(data));
+    Api.addCard(data).then((cardData) => {
+      cardsList.addItem(addCard(cardData));
+    });
   }
 );
 
@@ -158,6 +161,7 @@ const userInfo = new UserInfo({
 const userInfoPopup = new PopupWithForm(
   popupConfig.userInfoPopupSelector,
   (data) => {
+    Api.setUserInfo(data);
     userInfo.setUserInfo(data);
   }
 );
@@ -166,3 +170,14 @@ newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
 cardsList.renderItems(initialCards);
+
+Api.getAllData()
+  .then(([cards, userApiInfo]) => {
+    userInfo.setUserInfo(userApiInfo);
+    cards.forEach((card) => {
+      cardsList.addItem(addCard(card));
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
