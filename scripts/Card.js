@@ -5,6 +5,8 @@ class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._confirmationDeleteCard = confirmationDeleteCard;
+    this._id = data._id;
+    this._isLiked = data.isLiked;
   }
 
   _getTemplate() {

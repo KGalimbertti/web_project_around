@@ -110,7 +110,7 @@ const addCard = (data) => {
       console.log(card);
       const confirmationPopup = new PopupWithConfirmation(
         ".popup-confirmation",
-        Api.deleteCard(card._id)
+        () => Api.deleteCard(card._id)
       );
       confirmationPopup.setEventListeners();
       confirmationPopup.open();
@@ -147,7 +147,7 @@ const newCardImage = new Card(
   (card) => {
     const confirmationPopup = new PopupWithConfirmation(
       ".popup-confirmation",
-      card._confirmationDeleteCard()
+      () => card._confirmationDeleteCard()
     );
     confirmationPopup.open();
   }
@@ -190,6 +190,7 @@ userInfoPopup.setEventListeners();
 
 Api.getAllData()
   .then(([cards, userApiInfo]) => {
+    console.log(cards);
     userInfo.setUserInfo(userApiInfo);
     cards.forEach((card) => {
       cardsList.addItem(addCard(card));
