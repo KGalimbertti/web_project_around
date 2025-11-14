@@ -14,6 +14,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./API.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 const imagePopup = new PopupWithImage(popupConfig.cardImagePopupSelector);
 
@@ -101,15 +102,25 @@ closeButtonImage.addEventListener("click", () => {
 });
 
 const addCard = (data) => {
-  return new Card(data, "#card-template", () =>
-    imagePopup.open({ imageCaption: data.name, imageLink: data.link })
+  return new Card(
+    data,
+    "#card-template",
+    () => imagePopup.open({ imageCaption: data.name, imageLink: data.link }),
+    (card) => {
+      console.log(card);
+      const confirmationPopup = new PopupWithConfirmation(
+        ".popup-confirmation",
+        card._confirmationDeleteCard()
+      );
+      confirmationPopup.open();
+    }
   ).generateCard();
 };
 
-function prependCard(data, wrap) {
-  //empurra os cartões para a direita ao adicionar um novo cartão
-  wrap.prepend(addCard(data));
-}
+// function prependCard(data, wrap) {
+//   //empurra os cartões para a direita ao adicionar um novo cartão
+//   wrap.prepend(addCard(data));
+// }
 
 //evento de click para chamar o formulario do novo local com a função prependCardsubmit
 // popupNewLocalForm.addEventListener("submit", prependCardSubmit);
@@ -131,6 +142,13 @@ const newCardImage = new Card(
       link: cardImageInput.value,
       name: cardNameInput.value,
     });
+  },
+  (card) => {
+    const confirmationPopup = new PopupWithConfirmation(
+      ".popup-confirmation",
+      card._confirmationDeleteCard()
+    );
+    confirmationPopup.open();
   }
 );
 
@@ -145,7 +163,6 @@ const newCardPopup = new PopupWithForm(
 
 const cardsList = new Section(
   {
-    items: initialCards,
     renderer: (data) => {
       cardsList.addItem(addCard(data));
     },
@@ -169,7 +186,6 @@ const userInfoPopup = new PopupWithForm(
 newCardPopup.setEventListeners();
 imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
-cardsList.renderItems(initialCards);
 
 Api.getAllData()
   .then(([cards, userApiInfo]) => {

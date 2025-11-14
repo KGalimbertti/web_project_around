@@ -1,9 +1,10 @@
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, confirmationDeleteCard) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._confirmationDeleteCard = confirmationDeleteCard;
   }
 
   _getTemplate() {
@@ -44,7 +45,10 @@ class Card {
 
   _setEventListener() {
     this._likeButton.addEventListener("click", this._handleLikeButton);
-    this._deleteButton.addEventListener("click", this._handleDeleteCard);
+    this._deleteButton.addEventListener("click", () => {
+      console.log(this);
+      this._confirmationDeleteCard(this);
+    });
   }
 }
 
