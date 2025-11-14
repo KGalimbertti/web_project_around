@@ -110,8 +110,9 @@ const addCard = (data) => {
       console.log(card);
       const confirmationPopup = new PopupWithConfirmation(
         ".popup-confirmation",
-        card._confirmationDeleteCard()
+        Api.deleteCard(card._id)
       );
+      confirmationPopup.setEventListeners();
       confirmationPopup.open();
     }
   ).generateCard();
