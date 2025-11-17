@@ -107,10 +107,13 @@ const addCard = (data) => {
     "#card-template",
     () => imagePopup.open({ imageCaption: data.name, imageLink: data.link }),
     (card) => {
-      console.log(card);
       const confirmationPopup = new PopupWithConfirmation(
         ".popup-confirmation",
-        () => Api.deleteCard(card._id)
+        () => {
+          console.log("card da vez: ", card);
+          Api.deleteCard(card._id);
+          card._handleDeleteCard();
+        }
       );
       confirmationPopup.setEventListeners();
       confirmationPopup.open();
@@ -118,10 +121,10 @@ const addCard = (data) => {
   ).generateCard();
 };
 
-// function prependCard(data, wrap) {
-//   //empurra os cartões para a direita ao adicionar um novo cartão
-//   wrap.prepend(addCard(data));
-// }
+function prependCard(data, wrap) {
+  //empurra os cartões para a direita ao adicionar um novo cartão
+  wrap.prepend(addCard(data));
+}
 
 //evento de click para chamar o formulario do novo local com a função prependCardsubmit
 // popupNewLocalForm.addEventListener("submit", prependCardSubmit);
@@ -190,7 +193,6 @@ userInfoPopup.setEventListeners();
 
 Api.getAllData()
   .then(([cards, userApiInfo]) => {
-    console.log(cards);
     userInfo.setUserInfo(userApiInfo);
     cards.forEach((card) => {
       cardsList.addItem(addCard(card));

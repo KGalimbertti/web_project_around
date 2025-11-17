@@ -48,7 +48,6 @@ class Card {
   _setEventListener() {
     this._likeButton.addEventListener("click", this._handleLikeButton);
     this._deleteButton.addEventListener("click", () => {
-      console.log(this);
       this._confirmationDeleteCard(this);
     });
   }
