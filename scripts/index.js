@@ -102,6 +102,7 @@ closeButtonImage.addEventListener("click", () => {
 });
 
 const addCard = (data) => {
+  console.log("card adicionado:", data);
   return new Card(
     data,
     "#card-template",
@@ -111,8 +112,9 @@ const addCard = (data) => {
         ".popup-confirmation",
         () => {
           console.log("card da vez: ", card);
-          Api.deleteCard(card._id);
-          card._handleDeleteCard();
+          Api.deleteCard(card.getID()).then(() => {
+            return card._handleDeleteCard();
+          });
         }
       );
       confirmationPopup.setEventListeners();
@@ -168,6 +170,7 @@ const newCardPopup = new PopupWithForm(
 const cardsList = new Section(
   {
     renderer: (data) => {
+      console.log("Cards da tela:", data);
       cardsList.addItem(addCard(data));
     },
   },

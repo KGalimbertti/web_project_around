@@ -1,5 +1,6 @@
 class Card {
   constructor(data, cardSelector, handleCardClick, confirmationDeleteCard) {
+    console.log("this.id:", data._id);
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -34,6 +35,10 @@ class Card {
     this._cardTitle.textContent = this._name;
 
     return this._card;
+  }
+
+  getID() {
+    return this._id;
   }
 
   _handleLikeButton = () => {
