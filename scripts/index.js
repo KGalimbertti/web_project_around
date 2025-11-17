@@ -101,6 +101,10 @@ closeButtonImage.addEventListener("click", () => {
   closePopup(modalImage);
 });
 
+const confirmationPopup = new PopupWithConfirmation(".popup-confirmation");
+
+confirmationPopup.setEventListeners();
+
 const addCard = (data) => {
   console.log("card adicionado:", data);
   return new Card(
@@ -108,16 +112,13 @@ const addCard = (data) => {
     "#card-template",
     () => imagePopup.open({ imageCaption: data.name, imageLink: data.link }),
     (card) => {
-      const confirmationPopup = new PopupWithConfirmation(
-        ".popup-confirmation",
-        () => {
-          console.log("card da vez: ", card);
-          Api.deleteCard(card.getID()).then(() => {
-            return card._handleDeleteCard();
-          });
-        }
-      );
-      confirmationPopup.setEventListeners();
+      console.log("card da vez: ", card);
+      confirmationPopup.setSubmitAction(() => {
+        Api.deleteCard(card.getID()).then(() => {
+          card._handleDeleteCard();
+        });
+      });
+
       confirmationPopup.open();
     }
   ).generateCard();
