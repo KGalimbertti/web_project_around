@@ -45,6 +45,7 @@ function openPopup(modal) {
   aboutInput.value = profileDescription.textContent;
 
   //adiciona a classe popup__opened
+  console.log(modal);
   modal.classList.add("popup__opened");
   document.addEventListener("keydown", handleKeydown);
 }

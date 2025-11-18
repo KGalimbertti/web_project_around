@@ -15,6 +15,7 @@ import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./API.js";
 import PopupWithConfirmation from "./PopupWithConfirmation.js";
+import PopupEditAvatar from "./Popup-edit-avatar.js";
 
 const imagePopup = new PopupWithImage(popupConfig.cardImagePopupSelector);
 
@@ -74,6 +75,12 @@ overlays.forEach((overlay) => {
   });
 });
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__text-name",
+  aboutSelector: ".profile__text-description",
+  avatarSelector: ".profile__avatar",
+});
+
 document.addEventListener("keydown", handleKeydown);
 
 //Adicionando o evento de click para abrir o popup
@@ -106,23 +113,47 @@ const confirmationPopup = new PopupWithConfirmation(".popup-confirmation");
 confirmationPopup.setEventListeners();
 
 const addCard = (data) => {
-  console.log("card adicionado:", data);
   return new Card(
     data,
     "#card-template",
     () => imagePopup.open({ imageCaption: data.name, imageLink: data.link }),
     (card) => {
-      console.log("card da vez: ", card);
       confirmationPopup.setSubmitAction(() => {
         Api.deleteCard(card.getID()).then(() => {
           card._handleDeleteCard();
         });
       });
-
       confirmationPopup.open();
+    },
+
+    (isLiked) => {
+      console.log("chegou aqui ", isLiked);
+      return isLiked ? Api.likeCard(data._id) : Api.unlikeCard(data._id);
     }
   ).generateCard();
 };
+
+const editAvatarButton = document.querySelector(".profile__avatar-edit");
+
+const editAvatar = new PopupWithForm(".popup-edit-avatar", (data) => {
+  console.log("data", data);
+  Api.updateAvatar(data.link).then((response) => {
+    userInfo.setUserAvatar(response.avatar);
+  });
+});
+
+editAvatarButton.addEventListener("click", () => {
+  editAvatar.setEventListeners();
+  openPopup(editAvatar._popupElement);
+});
+
+const avatarValidator = new FormValidator(
+  editAvatar._popupElement,
+  ".popup__input"
+);
+avatarValidator.enableValidation();
+
+//função para manter o like ativo ao recarregar a página
 
 function prependCard(data, wrap) {
   //empurra os cartões para a direita ao adicionar um novo cartão
@@ -171,17 +202,11 @@ const newCardPopup = new PopupWithForm(
 const cardsList = new Section(
   {
     renderer: (data) => {
-      console.log("Cards da tela:", data);
       cardsList.addItem(addCard(data));
     },
   },
   ".cards"
 );
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__text-name",
-  aboutSelector: ".profile__text-description",
-});
 
 const userInfoPopup = new PopupWithForm(
   popupConfig.userInfoPopupSelector,
@@ -199,6 +224,7 @@ Api.getAllData()
   .then(([cards, userApiInfo]) => {
     userInfo.setUserInfo(userApiInfo);
     cards.forEach((card) => {
+      console.log("cards", card);
       cardsList.addItem(addCard(card));
     });
   })
