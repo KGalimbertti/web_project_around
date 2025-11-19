@@ -4,7 +4,6 @@ import {
   closePopup,
   openImageModal,
   popupConfig,
-  initialCards,
 } from "./utils.js";
 
 import FormValidator from "./FormValidator.js";
@@ -15,7 +14,6 @@ import PopupWithImage from "./PopupWithImage.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./API.js";
 import PopupWithConfirmation from "./PopupWithConfirmation.js";
-import PopupEditAvatar from "./Popup-edit-avatar.js";
 
 const imagePopup = new PopupWithImage(popupConfig.cardImagePopupSelector);
 
@@ -42,22 +40,11 @@ const popupNewLocal = document.querySelector(".popup-new-local");
 const popupNewLocalForm = document.querySelector(".popup-new-local__form");
 const popupProfileForm = document.querySelector(".popup-profile__form");
 
-//card pai dos cards
-const cardsWrapper = document.querySelector(".cards");
-
-//Esse código está pegando um template HTML e extraindo o conteúdo dele para usar como um “card”
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
 //variável que armazenara a imagem do card
 const cardImageInput = document.querySelector(".popup-new-local__input-image");
 
 //variável que armazenara o nome do card
 const cardNameInput = document.querySelector(".popup-new-local__input-name");
-
-//chamar o formulário
-const formcard = document.querySelector(".popup__form");
 
 //variavel criada para popup do container da imagem
 const modalImage = document.querySelector(".popup__image-container");
@@ -153,42 +140,11 @@ const avatarValidator = new FormValidator(
 );
 avatarValidator.enableValidation();
 
-//função para manter o like ativo ao recarregar a página
-
-function prependCard(data, wrap) {
-  //empurra os cartões para a direita ao adicionar um novo cartão
-  wrap.prepend(addCard(data));
-}
-
-//evento de click para chamar o formulario do novo local com a função prependCardsubmit
-// popupNewLocalForm.addEventListener("submit", prependCardSubmit);
-
 const profileValidator = new FormValidator(popupProfileForm, ".popup__input");
 profileValidator.enableValidation();
 
 const localValidator = new FormValidator(popupNewLocalForm, ".popup__input");
 localValidator.enableValidation();
-
-const newCardImage = new Card(
-  {
-    name: cardNameInput.value,
-    link: cardImageInput.value,
-  },
-  "#card-template",
-  () => {
-    openImageModal({
-      link: cardImageInput.value,
-      name: cardNameInput.value,
-    });
-  },
-  (card) => {
-    const confirmationPopup = new PopupWithConfirmation(
-      ".popup-confirmation",
-      () => card._confirmationDeleteCard()
-    );
-    confirmationPopup.open();
-  }
-);
 
 const newCardPopup = new PopupWithForm(
   popupConfig.cardFormPopupSelector,
